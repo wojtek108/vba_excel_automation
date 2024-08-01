@@ -1,0 +1,84 @@
+Private Sub CommandButton1_Click()
+    Dim ws As Worksheet
+    Dim ws2 As Worksheet
+    Dim lastRow As Long
+    Dim i As Long
+    '  Set ws2 = ThisWorkbook.Sheets("Ceny")
+ 
+    ' A = ws2.Range("H7").Value
+    A = 9.68
+    B = 12.93
+    C = 18.34
+    D = 10.6
+    E = 13.85
+    F = 19.26
+    G = 16.17
+    H = 19.41
+    i = 24.82
+    J = 22.56
+    K = 25.81
+    L = 31.22
+ 
+    On Error Resume Next
+    Set ws = ThisWorkbook.Sheets("Dane")
+    '  Set ws2 = ThisWorkbook.Sheets("Ceny")
+    On Error GoTo 0
+ 
+    If ws Is Nothing Then
+        MsgBox "Skoroszyt 'Dane' nie znaleziony. Sprawdź nazwę skoroszytu.", vbExclamation
+        Exit Sub
+    End If
+ 
+    ' If ws2 Is Nothing Then
+    '     MsgBox "Skoroszyt 'Ceny' nie znaleziony. Sprawdź nazwę skoroszytu.", vbExclamation
+    '      Exit Sub
+    '  End If
+ 
+    ' Find the last row in column C
+    lastRow = ws.Cells(ws.Rows.Count, 3).End(xlUp).Row
+ 
+ ' Loop through the rows
+    For i = 2 To lastRow
+        If ws.Cells(i, 4).Value < 5 And ws.Cells(i, 4).Value > 0 And ws.Cells(i, 7).Value < 85 And ws.Cells(i, 7).Value > 0 Then
+            resultValue = A
+            ws.Cells(i, 8).Value = resultValue
+        ElseIf ws.Cells(i, 4).Value > 4 And ws.Cells(i, 4).Value < 8 And ws.Cells(i, 7).Value < 85 And ws.Cells(i, 7).Value > 0 Then
+            resultValue = B
+            ws.Cells(i, 8).Value = resultValue
+        ElseIf ws.Cells(i, 4).Value > 7 And ws.Cells(i, 7).Value < 85 And ws.Cells(i, 7).Value > 0 Then
+            resultValue = C
+            ws.Cells(i, 8).Value = resultValue
+        ElseIf ws.Cells(i, 4).Value > 0 And ws.Cells(i, 4).Value < 5 And ws.Cells(i, 7).Value > 84 And ws.Cells(i, 7).Value < 120 Then
+            resultValue = D
+            ws.Cells(i, 8).Value = resultValue
+        ElseIf ws.Cells(i, 4).Value > 4 And ws.Cells(i, 4).Value < 8 And ws.Cells(i, 7).Value > 84 And ws.Cells(i, 7).Value < 120 Then
+            resultValue = E
+            ws.Cells(i, 8).Value = resultValue
+        ElseIf ws.Cells(i, 4).Value > 4 And ws.Cells(i, 4).Value < 8 And ws.Cells(i, 7).Value > 84 And ws.Cells(i, 7).Value < 120 Then
+            resultValue = F
+            ws.Cells(i, 8).Value = resultValue
+        ElseIf ws.Cells(i, 4).Value > 0 And ws.Cells(i, 4).Value < 5 And ws.Cells(i, 7).Value > 119 And ws.Cells(i, 7).Value < 160 Then
+            resultValue = G
+            ws.Cells(i, 8).Value = resultValue
+        ElseIf ws.Cells(i, 4).Value > 4 And ws.Cells(i, 4).Value < 8 And ws.Cells(i, 7).Value > 119 And ws.Cells(i, 7).Value < 160 Then
+            resultValue = H
+            ws.Cells(i, 8).Value = resultValue
+        ElseIf ws.Cells(i, 4).Value > 7 And ws.Cells(i, 7).Value > 119 And ws.Cells(i, 7).Value < 160 Then
+            resultValue = i
+            ws.Cells(i, 8).Value = resultValue
+        ElseIf ws.Cells(i, 4).Value > 0 And ws.Cells(i, 4).Value < 5 And ws.Cells(i, 4).Value > 159 And ws.Cells(i, 4).Value < 170 Then
+            resultValue = J
+            ws.Cells(i, 8).Value = resultValue
+        ElseIf ws.Cells(i, 4).Value > 4 And ws.Cells(i, 4).Value < 8 And ws.Cells(i, 7).Value > 159 And ws.Cells(i, 7).Value < 170 Then
+            resultValue = K
+            ws.Cells(i, 8).Value = resultValue
+        ElseIf ws.Cells(i, 4).Value > 7 And ws.Cells(i, 7).Value > 159 And ws.Cells(i, 7).Value < 170 Then
+            resultValue = L
+            ws.Cells(i, 8).Value = resultValue
+        Else
+            ' Handle other cases (if needed)
+            resultValue = 0
+            ws.Cells(i, 8).Value = resultValue
+        End If
+    Next i
+End Sub
